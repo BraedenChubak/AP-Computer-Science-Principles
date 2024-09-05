@@ -15,3 +15,10 @@ int main()
 
     return 0;
 }
+/*
+Enter Length: 62
+Enter Width: 57
+
+The Area is 3534
+The Perimeter is 238
+*/
