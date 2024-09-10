@@ -65,7 +65,7 @@ ___
 
 # 1. Compiling and Running
 
-???
+Compiling and running C++ programs actually use 2 different commands. You need to install GCC, but afterwards, you can run `g++ -o <FILENAME>.exe <FILENAME>.cpp && ./<FILENAME>.exe` to both compile and run the program in just one line
 
 
 
@@ -79,9 +79,19 @@ ___
 
 # 2. Data Types
 
-???
+C++ programs commonly use the following primitive types
 
-```LANGUAGE_HERE
+- `int` (integer) A whole number, can be positive or negative (4 bytes)
+  - integers can be signed or unsigned
+  - integers can also be short, long, or long long
+  - Only one of each group can be used for each int
+- `char` (character) One ASCII character (1 byte)
+  - Can also be used as a byte data type, since a char is always exactly 1 byte in size
+- `float` A single decimal number (4 bytes with 6 bits of precision)
+- `double` A single decimal number, but twice as large, has more than double the precision (8 bytes with 15 bits of precision)
+- `bool` (boolean) Either `true` or `false`
+
+```cpp
 
 ```
 
