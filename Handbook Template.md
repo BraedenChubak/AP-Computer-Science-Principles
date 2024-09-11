@@ -82,8 +82,8 @@ ___
 C++ programs commonly use the following primitive types
 
 - `int` (integer) A whole number, can be positive or negative (4 bytes)
-  - integers can be signed or unsigned
-  - integers can also be short, long, or long long
+  - Integers can be signed or unsigned
+  - Integers can also be short, long, or long long
   - Only one of each group can be used for each int
 - `char` (character) One ASCII character (1 byte)
   - Can also be used as a byte data type, since a char is always exactly 1 byte in size
@@ -91,8 +91,19 @@ C++ programs commonly use the following primitive types
 - `double` A single decimal number, but twice as large, has more than double the precision (8 bytes with 15 bits of precision)
 - `bool` (boolean) Either `true` or `false`
 
-```cpp
+Instead of `final`, C++ uses `const`, but it does the same thing, making a variable unchangeable and constant.
 
+```cpp
+signed long int a = -476;
+const char b = "b";
+double c = 4.7891;
+bool d = false;
+```
+
+On top of these primitive types, C++ has the very important non-primitive data type of `String`, which can be set and created like a primitive variable.
+
+```cpp
+String hello = "Hello there!";
 ```
 
 
@@ -107,7 +118,22 @@ ___
 
 # 3. Console I/O
 
-???
+There are two main ways to do I/O in C++
+
+You can use `<iostream>`, which gives you the functions `cin` and `cout`, which work somewhat similarly to Java's print function and Scanner respectively
+
+```cpp
+#include <iostream>
+
+String text = "";
+cout << "Enter your text: ";
+cin >> text;
+cout << "The text inputted was: " << text;
+```
+
+The other way to do I/O in C++ is to use `<stdio.h>`, which gives you the functions `printf` and `scanf`, which work similarly to the functions of the same name from C.
+
+
 
 
 
