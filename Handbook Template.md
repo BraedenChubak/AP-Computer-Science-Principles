@@ -103,7 +103,8 @@ bool d = false;
 On top of these primitive types, C++ has the very important non-primitive data type of `String`, which can be set and created like a primitive variable.
 
 ```cpp
-String hello = "Hello there!";
+#include <string> // String library required
+string hello = "Hello there!";
 ```
 
 
@@ -124,16 +125,41 @@ You can use `<iostream>`, which gives you the functions `cin` and `cout`, which 
 
 ```cpp
 #include <iostream>
+#include <string>
+using namespace std;
 
-String text = "";
-cout << "Enter your text: ";
-cin >> text;
-cout << "The text inputted was: " << text;
+int main() {
+  string text = "";
+  cout << "Enter your text: ";
+  cin >> text;
+  cout << "The text inputted was: " << text << "\n";
+
+  return 0;
+}
+/*
+Enter your text: hello
+The text inputted was: hello
+*/
 ```
 
-The other way to do I/O in C++ is to use `<stdio.h>`, which gives you the functions `printf` and `scanf`, which work similarly to the functions of the same name from C.
+The other way to do I/O in C++ is to use `<stdio.h>`, which gives you the functions `printf` and `scanf`, which work similarly to the functions of the same name from C.  scanf CANNOT scan C++ strings, as they require importing `<string>` and are not natively a part of C++.
 
+```cpp
+#include <stdio.h>
 
+int main() {
+    int integer;
+    printf("Enter an integer: ");
+    scanf("%d", &integer);
+    printf("Your integer is: %d", integer);
+
+    return 0;
+}
+/*
+Enter an integer: 14
+Your integer is: 14
+*/
+```
 
 
 
@@ -147,16 +173,53 @@ ___
 
 # 4. Arithmetic Operations
 
-???
+`+` - Addition
 
+`-` - Subtraction
 
+`*` - Multiplication
 
+`/` - Division
 
+`%` - Modulus
 
 ___
 
+## 4.1 Type Casting
 
+There are two types of type casting in C++, implicit and explicit.
 
+Implicit type casting is making one variable of one type be set to the value of a variable of another type.  This is done just like how you would set the values of variables normally.
+
+```cpp
+double pi = 3.14159;
+int piConverted = pi; // implicit type cast
+```
+
+Explicit type casting is when you use parentheses to set one variable of one type to the value of another variable of a different type.
+
+```cpp
+double pi = 3.14159;
+int piConverted = (int)pi; // explicit type cast
+```
+## 4.2 Math Functions
+
+The `max` and `min` functions are natively included in C++
+
+```cpp
+int maximum = max(12, 4);
+int minimum = min(12, 4);
+```
+
+C++ also has a `<cmath>` library, which adds the following functions:
+
+```cpp
+#include <cmath>
+
+int sqrt64 = sqrt(64);
+int roundedPI = round(3.1415926);
+double log2 = log(2);
+```
 
 
 # 5. Assignment Operations
