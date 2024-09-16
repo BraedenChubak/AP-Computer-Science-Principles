@@ -219,6 +219,7 @@ C++ also has a `<cmath>` library, which adds the following functions:
 int sqrt64 = sqrt(64);
 int roundedPI = round(3.1415926);
 double log2 = log(2);
+int square8 = pow(8, 2);
 ```
 
 
