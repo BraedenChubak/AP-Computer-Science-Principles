@@ -211,6 +211,12 @@ int maximum = max(12, 4);
 int minimum = min(12, 4);
 ```
 
+The `abs` function is also included
+
+```cpp
+int absval = abs(-6);
+```
+
 C++ also has a `<cmath>` library, which adds the following functions:
 
 ```cpp
