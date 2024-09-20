@@ -19,6 +19,7 @@ int main() {
     int t2m = t2 % 100;
     if (t1m > t2m) {
         t2m += 60;
+        t2h--; // forgot this, but it converts an hour into minutes instead of just adding the minutes
     }
     int hours = t2h - t1h;
     int minutes = t2m - t1m;
@@ -33,5 +34,5 @@ Enter time 2: 1730
 /*
 Enter time 1: 1730
 Enter time 2: 900
-16 hours and 30 minutes.
+15 hours and 30 minutes.
 */
