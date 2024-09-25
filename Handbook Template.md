@@ -231,7 +231,19 @@ int square8 = pow(8, 2);
 
 # 5. Assignment Operations
 
-???
+- `x = y` sets x equal to y
+- `x += y` sets x equal to x + y
+- `x -= y` sets x equal to x - y
+- `x *= y` sets x equal to x * y
+- `x /= y` sets x equal to x / y
+- `x %= y` sets x equal to x % y
+
+## 5.1 Bitwise Assignment Operations
+
+- `x |= y` sets x equal to x | y
+- `x ^= y` sets x equal to x ^ y
+- `x >>= y` sets x equal to x >> y
+- `x <<= y` sets x equal to x << y
 
 
 
@@ -245,7 +257,24 @@ ___
 
 # 6. Comments
 
-???
+There are multiplt ways to make comments in C++.
+
+```cpp
+// This is a single-line comment.
+
+/*
+This is a
+multi-line
+comment
+*/
+
+/* Properly
+ * formatted
+ * block
+ * comment
+ * usually for metadata (author, date, etc.)
+ */
+```
 
 
 
@@ -259,7 +288,20 @@ ___
 
 # 7. Decision Structures
 
-???
+```cpp
+if
+{
+
+}
+else if
+{
+
+}
+else
+{
+
+}
+```
 
 
 
@@ -295,11 +337,12 @@ ___
 
 ___
 
+# 10. Bitwise Operators
+
+___
 
 
-
-
-# 10. Advanced Decision Structures
+# 11. Advanced Decision Structures
 
 ???
 
@@ -313,7 +356,7 @@ ___
 
 
 
-# 11. String Methods
+# 12. String Methods
 
 ???
 
@@ -327,7 +370,7 @@ ___
 
 
 
-# 12. Random Generation
+# 13. Random Generation
 
 ???
 
@@ -341,7 +384,7 @@ ___
 
 
 
-# 13. Looping Structures
+# 14. Looping Structures
 
 ???
 
@@ -355,7 +398,7 @@ ___
 
 
 
-# 14. Functions/Methods
+# 15. Functions/Methods
 
 ???
 
@@ -369,7 +412,7 @@ ___
 
 
 
-# 15. Elementary Data Structures
+# 16. Elementary Data Structures
 
 ???
 
@@ -377,7 +420,7 @@ ___
 
 
 
-## 15.1 Arrays/Lists
+## 16.1 Arrays/Lists
 
 ???
 
@@ -386,7 +429,7 @@ ___
 
 
 
-## 15.2 Matrices
+## 16.2 Matrices
 
 ???
 
@@ -408,7 +451,7 @@ UNCOMMENT BY REMOVING THE ARROW TAGS SURROUNDING
 CHANGE THE SECTION NUMBERS AS DESIRED
 -->
 
-<!-- # 16. Major Keywords
+<!-- # 17. Major Keywords
 
 ???
 
@@ -422,7 +465,7 @@ ___ -->
 
 
 
-<!-- # 17. Error Handling
+<!-- # 18. Error Handling
 
 ???
 
@@ -436,7 +479,7 @@ ___ -->
 
 
 
-<!-- # 18. Working with Files
+<!-- # 19. Working with Files
 
 ???
 
@@ -450,7 +493,7 @@ ___ -->
 
 
 
-<!-- # 19. Major Language Features
+<!-- # 20. Major Language Features
 
 ???
 
@@ -460,7 +503,7 @@ ___ -->
 
 
 
-## 19.1 Classes
+## 20.1 Classes
 
 ???
 
@@ -468,7 +511,7 @@ ___ -->
 
 
 
-## 19.2 Inheritance
+## 20.2 Inheritance
 
 ???
 
@@ -476,7 +519,7 @@ ___ -->
 
 
 
-## 19.3 Generic Typing (Templates)
+## 20.3 Generic Typing (Templates)
 
 ???
 
@@ -484,21 +527,7 @@ ___ -->
 
 
 
-## 19.4 Pointers
-
-???
-
-
-
-
-
-___ -->
-
-
-
-
-
-<!-- # 20. Importing Local Libraries
+## 20.4 Pointers
 
 ???
 
@@ -512,7 +541,7 @@ ___ -->
 
 
 
-<!-- # 21. Working with Time
+<!-- # 21. Importing Local Libraries
 
 ???
 
@@ -526,7 +555,7 @@ ___ -->
 
 
 
-<!-- # 22. Importing Libaries from Package managers
+<!-- # 22. Working with Time
 
 ???
 
@@ -540,7 +569,7 @@ ___ -->
 
 
 
-<!-- # 23. Bitwise Operators
+<!-- # 23. Importing Libaries from Package managers
 
 ???
 
@@ -554,7 +583,7 @@ ___ -->
 
 
 
-<!-- # 24. Common Data Structures
+<!-- # 24. Bitwise Operators
 
 ???
 
@@ -568,7 +597,21 @@ ___ -->
 
 
 
-<!-- # 25. Advanced Language Features
+<!-- # 25. Common Data Structures
+
+???
+
+
+
+
+
+___ -->
+
+
+
+
+
+<!-- # 26. Advanced Language Features
 
 ???
 
