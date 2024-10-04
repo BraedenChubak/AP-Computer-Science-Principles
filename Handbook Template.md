@@ -315,7 +315,14 @@ ___
 
 # 8. Conditional Operators
 
-???
+- `==` - exactly equal to
+- `!=` - not equal to
+- `<` - greater than
+- `<=` - greater than or equal to
+- `>` - less than
+- `>=` - greater than or equal to
+
+- `str1.compare(str2)` - compares str1 to str2, returns 0 if they're the same, <0 if str1 is larger or higher value, and >0 if str2 is larger or higher value.
 
 
 
