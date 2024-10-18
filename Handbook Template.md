@@ -103,8 +103,9 @@ bool d = false;
 On top of these primitive types, C++ has the very important non-primitive data type of `String`, which can be set and created like a primitive variable.
 
 ```cpp
-#include <string> // String library required
+#include <string> // string library required
 string hello = "Hello there!";
+// NOT CAPITALIZED!
 ```
 
 
@@ -121,7 +122,7 @@ ___
 
 There are two main ways to do I/O in C++
 
-You can use `<iostream>`, which gives you the functions `cin` and `cout`, which work somewhat similarly to Java's print function and Scanner respectively
+You can use `<iostream>`, which gives you the functions `cin` and `cout`, which work somewhat similarly to Java's print function and Scanner (from System.in) respectively
 
 ```cpp
 #include <iostream>
@@ -275,9 +276,23 @@ comment
  * usually for metadata (author, date, etc.)
  */
 ```
+## 6.1 Documentation Comments 
 
+Documentation Comments are used to show how methods work inside the code of a class.
 
-
+```cpp
+/**
+ * Adds two numbers and returns the result.
+ * 
+ * @param x The first number.
+ * @param y The second number.
+ * 
+ * @return  The sum of x and y.
+ */
+int addWithDocumentation(int x, int y) {
+    return x + y;
+}
+```
 
 
 ___
@@ -337,26 +352,53 @@ ___
 
 # 9. Logic Operators
 
-???
+Logic Operators are used alongside Conditional Operators to make more complex true and false statements.
 
-
-
-
+```cpp
+x && y - AND (x AND y)
+x || y - OR (x OR y)
+!x - NOT (NOT x)
+```
 
 ___
 
 # 10. Bitwise Operators
 
+Bitwise Operators compare the bits of both inputs and output a new set of bits based off of which operator is used
+
+```cpp
+& - AND (7 = 111, 4 = 100, 7 & 4 = 4)
+| - OR  (7 = 111, 4 = 100, 7 | 4 = 7)
+^ - XOR (7 = 111, 4 = 100, 7 ^ 4 = 3 = 011)
+~ - NOT (4 = 100, ~4 = 0 = 000)
+<< - LEFT SHIFT (4 = 100, 4 << 2 = 16 = 10000)
+>> - RIGHT SHIFT (16 = 10000, 16 >> 2 = 4 = 100)
+```
 ___
 
 
 # 11. Advanced Decision Structures
 
-???
+Switch statements are a concise way to program multiple `if-else` statements.
 
+```cpp
+switch(expression) {
+  case A:
+    // runs if case A == true
+    break; // break so next cases are not checked
+  case B:
+    // runs if case B == true
+    break;
+  default:
+    // runs if case A == false && case B == false
+```
 
+There is also the ternary operator, which is essentially an `if-else` statement on one line (the `if` and `else` can only be one line each)
 
-
+```cpp
+int a = (a > 5) ? 5 : a;
+// If a > 5, set a to 5, else leave a unchanged
+```
 
 ___
 
@@ -366,11 +408,10 @@ ___
 
 # 12. String Methods
 
-???
-
-
-
-
+```cpp
+substr(start, length);
+length();
+```
 
 ___
 
@@ -380,11 +421,12 @@ ___
 
 # 13. Random Generation
 
-???
+Before using the random number generator, you will want to use the `srand` function, usually as `srand(time(0))` or `srand(time(NULL))`, to seed the random number generator.  If you don't, the random number generator will always output the same numbers in the same order.
 
-
-
-
+```cpp
+srand(time(NULL)); // time(NULL) is # of seconds passed since January 1970
+(rand() % (max-min+1)) + min // returns int between max and min inclusive
+```
 
 ___
 
@@ -394,7 +436,35 @@ ___
 
 # 14. Looping Structures
 
-???
+There is the basic `for` loop, which works just like Java `for` loops.
+
+```cpp
+for (int i = 1; i <= 5; i++) {
+  cout << i << " ";
+}
+// prints "1 2 3 4 5 "
+```
+
+There are also `for-each` loops, which also work work just like the Java loop of the same name.
+
+```cpp
+int arr[] = {1, 2, 3, 4, 5};
+for (int i : arr) {
+  cout << i << " ";
+}
+// prints "1 2 3 4 5 "
+```
+
+There is also the `while` loop, which also works just like the Java `while` loops.
+
+```cpp
+int i = 1;
+while (i <= 5) {
+  cout << i << " ";
+  i++;
+}
+// prints "1 2 3 4 5 "
+```
 
 
 
