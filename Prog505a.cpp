@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <math.h>
 #include <iostream>
+#include <fstream>
+#include <string>
 using namespace std;
 
 int func(int books) {
@@ -14,5 +16,6 @@ int func(int books) {
 }
 
 int main() {
-    
+    ifstream file;
+    file.open("data/prog505a.txt");
 }
