@@ -478,10 +478,36 @@ ___
 
 # 15. Functions/Methods
 
-???
+In C++, function headers are written similarly to Java.  For instance, a function called `coolio` that returns an int and takes in a boolean called `iscool` would be written like
 
+```cpp
+int coolio(boolean iscool) {
 
+}
+```
 
+To make a function public, private, or protected, the format is unlike Java.  As an example, this makes the `coolio` function private.
+
+```cpp
+private:
+int coolio(boolean iscool) {
+
+}
+```
+
+To make classes and subclasses, the following syntax is used.
+
+```cpp
+class Parent {
+  // regular class
+
+}
+
+class Child : public Parent {
+  // child class with parent public
+
+}
+```
 
 
 ___
@@ -492,15 +518,35 @@ ___
 
 # 16. Elementary Data Structures
 
-???
-
 
 
 
 
 ## 16.1 Arrays/Lists
 
-???
+Arrays are declared like the following:
+
+```cpp
+int arr[10]; // int array of size 10
+```
+
+C++ also has dynamically sized arrays called `vectors`, which are declared like this.
+
+```cpp
+#include <vector>
+
+vector<int> vec; // int vector
+
+vec.size(); // size of vector
+vec.push_back(10); // adds 10 at the end
+vec.pop_back(); // deletes last item
+vec.swap(vec2); // swaps vec and vec2
+vec.insert(1, 99); // inserts 99 at index 1
+vec.erase(2); // deletes item at index 2
+vec.clear() // clears the vector
+
+```
+
 
 
 
@@ -509,8 +555,16 @@ ___
 
 ## 16.2 Matrices
 
-???
+To make a matrix, it is as simple as making an array of arrays.
 
+```cpp
+int mat[5][5]; // 5x5 int matrix
+```
+You can also make arrays of arrays of arrays (and so on)
+```cpp
+int mat[5][5][5][5][5];
+// 5-D array where each side is length 5.
+```
 
 
 
