@@ -425,7 +425,7 @@ Before using the random number generator, you will want to use the `srand` funct
 
 ```cpp
 srand(time(NULL)); // time(NULL) is # of seconds passed since January 1970
-(rand() % (max-min+1)) + min // returns int between max and min inclusive
+(rand() % (1+max-min)) + min // returns int between max and min inclusive
 ```
 
 ___
@@ -528,22 +528,25 @@ Arrays are declared like the following:
 
 ```cpp
 int arr[10]; // int array of size 10
+int a = arr[2] // sets a to index 2 of arr;
 ```
 
-C++ also has dynamically sized arrays called `vectors`, which are declared like this.
+C++ also has dynamically sized arrays called `vectors`, which work like this.
 
 ```cpp
 #include <vector>
 
 vector<int> vec; // int vector
 
-vec.size(); // size of vector
+vec.size(); // returns size of vector
+int a = vec[2]; // index 2 of vec
+int b = vec.at(2) // same as above, but alternate syntax
 vec.push_back(10); // adds 10 at the end
 vec.pop_back(); // deletes last item
 vec.swap(vec2); // swaps vec and vec2
 vec.insert(1, 99); // inserts 99 at index 1
 vec.erase(2); // deletes item at index 2
-vec.clear() // clears the vector
+vec.clear(); // clears the vector
 
 ```
 
@@ -566,6 +569,12 @@ int mat[5][5][5][5][5];
 // 5-D array where each side is length 5.
 ```
 
+You can also make vectors of vectors
+
+```cpp
+vector<vector<int>> mat;
+// 2-D matrix of vectors
+```
 
 
 
