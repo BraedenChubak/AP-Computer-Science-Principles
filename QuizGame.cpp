@@ -69,7 +69,7 @@ int main() {
         int r = rand() % QUESTION_COUNT;
         bool duplicateFlag = true;
         int check;
-        while (duplicateFlag) {
+        while (duplicateFlag) { // loop ensures no duplicate questions
             check = 0;
             for (int i : usedQs) {
                 if (r == i) {
