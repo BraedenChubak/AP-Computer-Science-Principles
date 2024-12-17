@@ -32,9 +32,9 @@ public class PROJECT2 {
                         toGenerate[rH][rC] = "□";
                     }
                 }
+
             // for smoothing the box walls out, not sure how i feel about it
-            
-            
+            /*
             for (int i = 0; i < 1; i++) { // unsure how many times i wish to run it
                 for (int r = 1; r < h-1; r++) {
                     for (int c = 1; c < w-1; c++) {
@@ -51,7 +51,7 @@ public class PROJECT2 {
                     }
                 }
             }
-            
+            */
 
             int numEnemyChains = (int)(Math.random() * (Math.sqrt(h*w))/4) + (int)(Math.sqrt(h*w)/3);
                 for (int i = 0; i < numEnemyChains; i++) {
@@ -90,6 +90,9 @@ public class PROJECT2 {
                         checkArr.clear();
                         checkArr.add("X");
                         hasEnemy = true;
+                        int initRH = rH;
+                        int initRC = rC;
+                        attemptCounter = 0;
                         while (hasEnemy || !toGenerate[rH][rC].equals(" ")) {
                             rH = (int)(Math.random() * 3) - 1 + rH;
                             if (rH <= -1) { rH = 0; }
@@ -105,10 +108,19 @@ public class PROJECT2 {
                                         if (!(r2 < 0 || r2 > h || c2 < 0 || c2 > w)) { checkArr.add(toGenerate[r2][c2]); }
                                     }
                                 }
-                            } 
+                            }
                             hasEnemy = false;
                             for (String s : checkArr) {
                                 if (s.equals("I")) { hasEnemy = true; }
+                            }
+                            if (toGenerate[rH][rC].equals("□")) {
+                                rH = initRH;
+                                rC = initRC;
+                            }
+                            attemptCounter++;
+                            if (attemptCounter >= h * w * 2) {
+                                System.out.println("WORLD RESET");
+                                return generate(h,w);
                             }
                         }
                         toGenerate[rH][rC] = "I";
@@ -164,6 +176,7 @@ public class PROJECT2 {
         System.out.println("L: 60x40");
         System.out.println("X: 120x75");
         System.out.println("T: 16x36");
+        System.out.println("C: Custom");
         String sizeChoice = input.next();
         final int HEIGHT;
         final int WIDTH;
@@ -187,6 +200,12 @@ public class PROJECT2 {
             case "T":
                 HEIGHT = 36;
                 WIDTH = 16;
+                break;
+            case "C":
+                System.out.print("Enter height of dungeon: ");
+                HEIGHT = input.nextInt();
+                System.out.print("Enter width of dungeon: ");
+                WIDTH = input.nextInt();
                 break;
             default:
                 System.out.println("ERROR: INVALID SIZE");
