@@ -34,6 +34,7 @@ public class PROJECT2 {
                 }
             // for smoothing the box walls out, not sure how i feel about it
             
+            
             for (int i = 0; i < 1; i++) { // unsure how many times i wish to run it
                 for (int r = 1; r < h-1; r++) {
                     for (int c = 1; c < w-1; c++) {
