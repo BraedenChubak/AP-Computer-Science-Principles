@@ -34,6 +34,7 @@ public class PROJECT2 {
                 }
 
             // for smoothing the box walls out, not sure how i feel about it
+            
             /*
             for (int i = 0; i < 1; i++) { // unsure how many times i wish to run it
                 for (int r = 1; r < h-1; r++) {
@@ -130,7 +131,7 @@ public class PROJECT2 {
                 }
             
 
-            int numCoins = (int)(Math.random() * (h*w/40)) + h*w/40 + Math.min(h, w)/2;
+            int numCoins = (int)(h*w/30 + Math.sqrt(h*w)/2);
             //System.out.println("numCoins: " + numCoins);
                 for (int i = 0; i < numCoins; i++) {
                     int coinR = 0;
@@ -144,7 +145,51 @@ public class PROJECT2 {
             
             //System.out.println("coins done");
 
-            
+            // player placer
+            ArrayList<String> enemyCheckArr = new ArrayList<>();
+            ArrayList<String> wallCheckArr = new ArrayList<>();
+            int rH = 0;
+            int rC = 0;
+            boolean hasEnemy = true;
+            boolean hasWall = true;
+            int attemptCounter = 0;
+            while (hasEnemy || hasWall || !toGenerate[rH][rC].equals(" ")) {
+                enemyCheckArr.clear();
+                wallCheckArr.clear();
+                final int ENEMYCHECKSIZE = (int)(Math.log(h*w)/Math.log(2) * Math.log(Math.min(h,w))/Math.log(2)/10 + 0.25);
+                rH = (int)(Math.random() * (h-(2*ENEMYCHECKSIZE)-1)) + ENEMYCHECKSIZE+1;
+                rC = (int)(Math.random() * (w-(2*ENEMYCHECKSIZE)-1)) + ENEMYCHECKSIZE+1;
+                for (int r2 = rH - ENEMYCHECKSIZE; r2 <= rH + ENEMYCHECKSIZE; r2++) {
+                    for (int c2 = rC - ENEMYCHECKSIZE; c2 <= rC + ENEMYCHECKSIZE; c2++) {
+                        if ((r2 + c2 < ENEMYCHECKSIZE + rH + rC || (r2 < ENEMYCHECKSIZE || r2 > h-ENEMYCHECKSIZE || c2 < ENEMYCHECKSIZE || c2 > w - ENEMYCHECKSIZE))  && (r2 != 0 && c2 != 0)) {
+                            enemyCheckArr.add(toGenerate[r2][c2]);
+                        }
+                    }
+                } 
+                hasEnemy = false;
+                for (String s : enemyCheckArr) {
+                    if (s.equals("I")) { hasEnemy = true; }
+                }
+
+                final int WALLCHECKSIZE = 4;
+                for (int r2 = rH - WALLCHECKSIZE; r2 <= rH + WALLCHECKSIZE; r2++) {
+                    for (int c2 = rC - WALLCHECKSIZE; c2 <= rC + WALLCHECKSIZE; c2++) {
+                        if ((r2 + c2 < WALLCHECKSIZE + rH + rC || (r2 < WALLCHECKSIZE || r2 > h-WALLCHECKSIZE || c2 < WALLCHECKSIZE || c2 > w - WALLCHECKSIZE/2))  && (r2 != 0 && c2 != 0)) {
+                            wallCheckArr.add(toGenerate[r2][c2]);
+                        }
+                    }
+                } 
+                hasWall = false;
+                for (String s : wallCheckArr) {
+                    if (s.equals("□") || s.equals("X")) { hasWall = true; }
+                }
+                attemptCounter++;
+                if (attemptCounter >= h * w * 2) {
+                    System.out.println("WORLD RESET");
+                    return generate(h,w);
+                }
+            }
+            toGenerate[rH][rC] = "Y";
 
             return toGenerate;
         }
@@ -161,6 +206,7 @@ public class PROJECT2 {
                 if (m[l][c].equals("O")) { System.out.print(ANSI_YELLOW + m[l][c] + " " + ANSI_RESET); }
                 else if (m[l][c].equals("I")) { System.out.print(ANSI_MAGENTA + m[l][c] + " " + ANSI_RESET); }
                 else if (m[l][c].equals("X")) { System.out.print(ANSI_RED + m[l][c] + " " + ANSI_RESET); }
+                else if (m[l][c].equals("Y")) { System.out.print(ANSI_CYAN + m[l][c] + " " + ANSI_RESET); }
                 // make player CYAN
                 else { System.out.print(m[l][c] + " "); }
             }
@@ -174,7 +220,7 @@ public class PROJECT2 {
         System.out.println("S: 21x14");
         System.out.println("M: 30x20");
         System.out.println("L: 60x40");
-        System.out.println("X: 120x75");
+        System.out.println("X: 125x75");
         System.out.println("T: 16x36");
         System.out.println("C: Custom");
         String sizeChoice = input.next();
@@ -195,7 +241,7 @@ public class PROJECT2 {
                 break;
             case "X":
                 HEIGHT = 75;
-                WIDTH = 120;
+                WIDTH = 125;
                 break;
             case "T":
                 HEIGHT = 36;
@@ -211,29 +257,20 @@ public class PROJECT2 {
                 System.out.println("ERROR: INVALID SIZE");
                 return;
         }
-        /*
-        if (sizeChoice.substring(0,1).equals("S")) {
-            HEIGHT = 8;
-            WIDTH = 12;
-        } else if (sizeChoice.substring(0,1).equals("M")) {
-            HEIGHT = 14;
-            WIDTH = 21;
-        } else if (sizeChoice.substring(0,1).equals("L")) {
-            HEIGHT = 20;
-            WIDTH = 30;
-        } else if (sizeChoice.substring(0,1).equals("X")) {
-            HEIGHT = 40;
-            WIDTH = 60;
-        } else if (sizeChoice.substring(0,1).equals("T")) {
-            HEIGHT = 24;
-            WIDTH = 12;
-        } else {
-            System.out.println("ERROR: INVALID SIZE");
-            return;
-        }
-        */
         System.out.println();
         String[][] dungeon = World.generate(HEIGHT, WIDTH);
         printMatrix(dungeon);
+        int turnCount = 0;
+        int hp = 5;
+        int stamina = 5;
+        int coinCount = 0;
+        for (int r = 0; r < dungeon.length; r++) {
+            for (int c = 0; c < dungeon[r].length; c++) {
+                if (dungeon[r][c].equals("O")) { countCount++; }
+            }
+        }
+        while (true) {
+            System.out.println("Turn ")
+        }
     }
 }
