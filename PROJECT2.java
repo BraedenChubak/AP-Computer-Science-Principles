@@ -156,12 +156,12 @@ public class PROJECT2 {
             while (hasEnemy || hasWall || !toGenerate[rH][rC].equals(" ")) {
                 enemyCheckArr.clear();
                 wallCheckArr.clear();
-                final int ENEMYCHECKSIZE = (int)(Math.log(h*w)/Math.log(2) * Math.log(Math.min(h,w))/Math.log(2)/10 + 0.25);
-                rH = (int)(Math.random() * (h-(2*ENEMYCHECKSIZE)-1)) + ENEMYCHECKSIZE+1;
-                rC = (int)(Math.random() * (w-(2*ENEMYCHECKSIZE)-1)) + ENEMYCHECKSIZE+1;
-                for (int r2 = rH - ENEMYCHECKSIZE; r2 <= rH + ENEMYCHECKSIZE; r2++) {
-                    for (int c2 = rC - ENEMYCHECKSIZE; c2 <= rC + ENEMYCHECKSIZE; c2++) {
-                        if ((r2 + c2 < ENEMYCHECKSIZE + rH + rC || (r2 < ENEMYCHECKSIZE || r2 > h-ENEMYCHECKSIZE || c2 < ENEMYCHECKSIZE || c2 > w - ENEMYCHECKSIZE))  && (r2 != 0 && c2 != 0)) {
+                final int TRUECHECKSIZE = (int)((Math.log(h*w)/Math.log(2) * Math.log(Math.min(h,w))/Math.log(2)/10 + 0.25) * 0.5) + 1;
+                rH = (int)(Math.random() * (h-(2*TRUECHECKSIZE)-1)) + TRUECHECKSIZE+1;
+                rC = (int)(Math.random() * (w-(2*TRUECHECKSIZE)-1)) + TRUECHECKSIZE+1;
+                for (int r2 = rH - TRUECHECKSIZE; r2 <= rH + TRUECHECKSIZE; r2++) {
+                    for (int c2 = rC - TRUECHECKSIZE; c2 <= rC + TRUECHECKSIZE; c2++) {
+                        if ((r2 + c2 < TRUECHECKSIZE + rH + rC || (r2 < TRUECHECKSIZE || r2 > h-TRUECHECKSIZE || c2 < TRUECHECKSIZE || c2 > w - TRUECHECKSIZE))  && (r2 != 0 && c2 != 0)) {
                             enemyCheckArr.add(toGenerate[r2][c2]);
                         }
                     }
@@ -171,10 +171,9 @@ public class PROJECT2 {
                     if (s.equals("I")) { hasEnemy = true; }
                 }
 
-                final int WALLCHECKSIZE = 4;
-                for (int r2 = rH - WALLCHECKSIZE; r2 <= rH + WALLCHECKSIZE; r2++) {
-                    for (int c2 = rC - WALLCHECKSIZE; c2 <= rC + WALLCHECKSIZE; c2++) {
-                        if ((r2 + c2 < WALLCHECKSIZE + rH + rC || (r2 < WALLCHECKSIZE || r2 > h-WALLCHECKSIZE || c2 < WALLCHECKSIZE || c2 > w - WALLCHECKSIZE/2))  && (r2 != 0 && c2 != 0)) {
+                for (int r2 = rH - TRUECHECKSIZE; r2 <= rH + TRUECHECKSIZE; r2++) {
+                    for (int c2 = rC - TRUECHECKSIZE; c2 <= rC + TRUECHECKSIZE; c2++) {
+                        if ((r2 + c2 < TRUECHECKSIZE + rH + rC || (r2 < TRUECHECKSIZE || r2 > h-TRUECHECKSIZE || c2 < TRUECHECKSIZE || c2 > w - TRUECHECKSIZE))  && (r2 != 0 && c2 != 0)) {
                             wallCheckArr.add(toGenerate[r2][c2]);
                         }
                     }
@@ -264,13 +263,114 @@ public class PROJECT2 {
         int hp = 5;
         int stamina = 5;
         int coinCount = 0;
+        int pR = -1;
+        int pC = -1;
         for (int r = 0; r < dungeon.length; r++) {
             for (int c = 0; c < dungeon[r].length; c++) {
-                if (dungeon[r][c].equals("O")) { countCount++; }
+                if (dungeon[r][c].equals("O")) { coinCount++; }
+                if (dungeon[r][c].equals("Y")) {
+                    pR = r;
+                    pC = c;
+                }
             }
         }
-        while (true) {
-            System.out.println("Turn ")
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_RED = "\u001B[31m";
+        final String ANSI_CYAN = "\u001B[96m";
+        final String ANSI_YELLOW = "\u001B[93m";
+        final String ANSI_GOLD = "\u001B[33m";
+        final String ANSI_MAGENTA = "\u001B[95m";
+        final String ANSI_PURPLE = "\u001B[35m";
+        final String ANSI_GREEN = "\u001B[92m";
+        while (hp > 0 && coinCount > 0) {
+            System.out.println("\nTurns Taken: " + turnCount);
+            System.out.println("Coins Remaining: " + coinCount);
+            System.out.print("Health: ");
+            if (hp >= 4) {
+                System.out.println(ANSI_GREEN + hp + ANSI_RESET + "/5");
+            } else if (hp >= 2) {
+                System.out.println(ANSI_GOLD + hp + ANSI_RESET + "/5");
+            } else {
+                System.out.println(ANSI_RED + hp + ANSI_RESET + "/5");
+            }
+            System.out.print("Stamina: ");
+            if (stamina >= 4) {
+                System.out.println(ANSI_CYAN + stamina + ANSI_RESET + "/5");
+            } else if (stamina >= 2) {
+                System.out.println(ANSI_YELLOW + stamina + ANSI_RESET + "/5");
+            } else {
+                System.out.println(ANSI_PURPLE + stamina + ANSI_RESET + "/5");
+            }
+            System.out.print("What is your action? ");
+            String action = "";
+            boolean invalidAction = true;
+            while (invalidAction) {
+                invalidAction = false;
+                action = input.next();
+                switch (action) {
+                    case "E":
+                        return;
+                    case "M":
+                        System.out.print("Which direction would you like to move (U/L/D/R): ");
+                        action = input.next();
+                        String moveCheck = "";
+                        switch(action) {
+                            case "U":
+                                moveCheck = dungeon[pR-1][pC];
+                                if (!moveCheck.equals("□") && !moveCheck.equals("X") && !moveCheck.equals("I")) {
+                                    if (moveCheck.equals("O")) { coinCount--; }
+                                    dungeon[pR][pC] = " ";
+                                    pR--;
+                                    dungeon[pR][pC] = "Y";
+                                } else {
+                                    moveCheck = "";
+                                }
+                                break;
+                            case "L":
+                                moveCheck = dungeon[pR][pC-1];
+                                if (!moveCheck.equals("□") && !moveCheck.equals("X") && !moveCheck.equals("I")) {
+                                    if (moveCheck.equals("O")) { coinCount--; }
+                                    dungeon[pR][pC] = " ";
+                                    pC--;
+                                    dungeon[pR][pC] = "Y";
+                                } else {
+                                    moveCheck = "";
+                                }
+                                break;
+                            case "D":
+                                moveCheck = dungeon[pR+1][pC];
+                                if (!moveCheck.equals("□") && !moveCheck.equals("X") && !moveCheck.equals("I")) {
+                                    if (moveCheck.equals("O")) { coinCount--; }
+                                    dungeon[pR][pC] = " ";
+                                    pR++;
+                                    dungeon[pR][pC] = "Y";
+                                } else {
+                                    moveCheck = "";
+                                }
+                                break;
+                            case "R":
+                                moveCheck = dungeon[pR][pC+1];
+                                if (!moveCheck.equals("□") && !moveCheck.equals("X") && !moveCheck.equals("I")) {
+                                    if (moveCheck.equals("O")) { coinCount--; }
+                                    dungeon[pR][pC] = " ";
+                                    pC++;
+                                    dungeon[pR][pC] = "Y";
+                                } else {
+                                    moveCheck = "";
+                                }
+                                break;
+
+                        }
+                        if (!moveCheck.equals("")) {
+                            break;
+                        }
+                    default:
+                        System.out.print("\nINVALID ACTION\nWhat is your action? ");
+                        invalidAction = true;
+                }
+            }
+            turnCount++;
+            printMatrix(dungeon);
         }
     }
 }
