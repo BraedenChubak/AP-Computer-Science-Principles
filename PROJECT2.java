@@ -54,6 +54,7 @@ public class PROJECT2 {
             }
             */
 
+            /*
             int numEnemyChains = (int)(Math.random() * (Math.sqrt(h*w))/4) + (int)(Math.sqrt(h*w)/3);
                 for (int i = 0; i < numEnemyChains; i++) {
                     ArrayList<String> checkArr = new ArrayList<>();
@@ -129,7 +130,7 @@ public class PROJECT2 {
                     }
                     //System.out.println();
                 }
-            
+            */
 
             int numCoins = (int)(h*w/30 + Math.sqrt(h*w)/2);
             //System.out.println("numCoins: " + numCoins);
@@ -213,6 +214,7 @@ public class PROJECT2 {
         }
     }
 
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter size of dungeon, the following sizes are available:");
@@ -260,9 +262,10 @@ public class PROJECT2 {
         String[][] dungeon = World.generate(HEIGHT, WIDTH);
         printMatrix(dungeon);
         int turnCount = 0;
-        int hp = 5;
-        int stamina = 5;
+        //int hp = 5;
+        //int stamina = 5;
         int coinCount = 0;
+        //int enemyCount = 0;
         int pR = -1;
         int pC = -1;
         for (int r = 0; r < dungeon.length; r++) {
@@ -272,8 +275,10 @@ public class PROJECT2 {
                     pR = r;
                     pC = c;
                 }
+                // if (dungeon[r][c]).equals("I") { enemyCount++; }
             }
         }
+        //int[][] enemies = new int[enemyCount][3];
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_RED = "\u001B[31m";
         final String ANSI_CYAN = "\u001B[96m";
@@ -282,9 +287,11 @@ public class PROJECT2 {
         final String ANSI_MAGENTA = "\u001B[95m";
         final String ANSI_PURPLE = "\u001B[35m";
         final String ANSI_GREEN = "\u001B[92m";
-        while (hp > 0 && coinCount > 0) {
+        while (coinCount > 0) {
             System.out.println("\nTurns Taken: " + turnCount);
             System.out.println("Coins Remaining: " + coinCount);
+            /*
+            System.out.println("Enemies Remaining: " + enemyCount);
             System.out.print("Health: ");
             if (hp >= 4) {
                 System.out.println(ANSI_GREEN + hp + ANSI_RESET + "/5");
@@ -301,6 +308,7 @@ public class PROJECT2 {
             } else {
                 System.out.println(ANSI_PURPLE + stamina + ANSI_RESET + "/5");
             }
+            */
             System.out.print("What is your action? ");
             String action = "";
             boolean invalidAction = true;
@@ -317,7 +325,7 @@ public class PROJECT2 {
                         switch(action) {
                             case "U":
                                 moveCheck = dungeon[pR-1][pC];
-                                if (!moveCheck.equals("□") && !moveCheck.equals("X") && !moveCheck.equals("I")) {
+                                if (!moveCheck.equals("□") && !moveCheck.equals("X") && !moveCheck.equals("3") && !moveCheck.equals("2") && !moveCheck.equals("1")) {
                                     if (moveCheck.equals("O")) { coinCount--; }
                                     dungeon[pR][pC] = " ";
                                     pR--;
@@ -328,7 +336,7 @@ public class PROJECT2 {
                                 break;
                             case "L":
                                 moveCheck = dungeon[pR][pC-1];
-                                if (!moveCheck.equals("□") && !moveCheck.equals("X") && !moveCheck.equals("I")) {
+                                if (!moveCheck.equals("□") && !moveCheck.equals("X") && !moveCheck.equals("3") && !moveCheck.equals("2") && !moveCheck.equals("1")) {
                                     if (moveCheck.equals("O")) { coinCount--; }
                                     dungeon[pR][pC] = " ";
                                     pC--;
@@ -339,7 +347,7 @@ public class PROJECT2 {
                                 break;
                             case "D":
                                 moveCheck = dungeon[pR+1][pC];
-                                if (!moveCheck.equals("□") && !moveCheck.equals("X") && !moveCheck.equals("I")) {
+                                if (!moveCheck.equals("□") && !moveCheck.equals("X") && !moveCheck.equals("3") && !moveCheck.equals("2") && !moveCheck.equals("1")) {
                                     if (moveCheck.equals("O")) { coinCount--; }
                                     dungeon[pR][pC] = " ";
                                     pR++;
@@ -350,7 +358,7 @@ public class PROJECT2 {
                                 break;
                             case "R":
                                 moveCheck = dungeon[pR][pC+1];
-                                if (!moveCheck.equals("□") && !moveCheck.equals("X") && !moveCheck.equals("I")) {
+                                if (!moveCheck.equals("□") && !moveCheck.equals("X") && !moveCheck.equals("3") && !moveCheck.equals("2") && !moveCheck.equals("1")) {
                                     if (moveCheck.equals("O")) { coinCount--; }
                                     dungeon[pR][pC] = " ";
                                     pC++;
@@ -363,14 +371,99 @@ public class PROJECT2 {
                         }
                         if (!moveCheck.equals("")) {
                             break;
+                        } else {
+                            System.out.print("\nINVALID ACTION\nWhat is your action? ");
+                            invalidAction = true;
+                            break;
                         }
+                    case "B":
+                        System.out.print("Which direction would you like to bomb (U/L/D/R): ");
+                        action = input.next();
+                        String bombCheck = "";
+                        switch(action) {
+                            case "U":
+                                bombCheck = dungeon[pR-1][pC];
+                                if (!bombCheck.equals("□") && !bombCheck.equals("X") && !bombCheck.equals("3") && !bombCheck.equals("2") && !bombCheck.equals("1")) {
+                                    if (bombCheck.equals("O")) { coinCount--; }
+                                    dungeon[pR-1][pC] = "4";
+                                } else {
+                                    bombCheck = "";
+                                }
+                                break;
+                            case "L":
+                                bombCheck = dungeon[pR][pC-1];
+                                if (!bombCheck.equals("□") && !bombCheck.equals("X") && !bombCheck.equals("3") && !bombCheck.equals("2") && !bombCheck.equals("1")) {
+                                    if (bombCheck.equals("O")) { coinCount--; }
+                                    dungeon[pR][pC-1] = "4";
+                                } else {
+                                    bombCheck = "";
+                                }
+                                break;
+                            case "D":
+                                bombCheck = dungeon[pR+1][pC];
+                                if (!bombCheck.equals("□") && !bombCheck.equals("X") && !bombCheck.equals("3") && !bombCheck.equals("2") && !bombCheck.equals("1")) {
+                                    if (bombCheck.equals("O")) { coinCount--; }
+                                    dungeon[pR+1][pC] = "4";
+                                } else {
+                                    bombCheck = "";
+                                }
+                                break;
+                            case "R":
+                                bombCheck = dungeon[pR][pC+1];
+                                if (!bombCheck.equals("□") && !bombCheck.equals("X") && !bombCheck.equals("3") && !bombCheck.equals("2") && !bombCheck.equals("1")) {
+                                    if (bombCheck.equals("O")) { coinCount--; }
+                                    dungeon[pR][pC+1] = "4";
+                                } else {
+                                    bombCheck = "";
+                                }
+                                break;
+
+                        }
+                        if (!bombCheck.equals("")) {
+                            break;
+                        } else {
+                            System.out.print("\nINVALID ACTION\nWhat is your action? ");
+                            invalidAction = true;
+                            break;
+                        }
+                    case "W":
+                        break;
                     default:
                         System.out.print("\nINVALID ACTION\nWhat is your action? ");
                         invalidAction = true;
                 }
             }
             turnCount++;
+            for (int r = 0; r < HEIGHT; r++) {
+                for (int c = 0; c < WIDTH; c++) {
+                    if (dungeon[r][c].equals("4")) { dungeon[r][c] = "3"; }
+                    else if (dungeon[r][c].equals("3")) { dungeon[r][c] = "2"; }
+                    else if (dungeon[r][c].equals("2")) { dungeon[r][c] = "1"; }
+                    else if (dungeon[r][c].equals("1")) {
+                        for (int bombR = r-2; bombR <= r+2; bombR++) {
+                            for (int bombC = c-2; bombC <= c+2; bombC++) {
+                                if (Math.abs(bombR-r) + Math.abs(bombC-c) <= 3 && bombR > 0 && bombR < HEIGHT && bombC > 0 && bombC < WIDTH) {
+                                    if (dungeon[bombR][bombC].equals("Y")) {
+                                        System.out.println("You blew yourself up!");
+                                        return;
+                                    }
+                                    if (!dungeon[bombR][bombC].equals("X") && !dungeon[bombR][bombC].equals("O")) {
+                                        dungeon[bombR][bombC] = ("P");
+                                    }
+                                }
+                            }
+                        }
+                        r -= 3;
+                        c -= 3;
+                        if (r < 0) { r = 0; }
+                        if (c < 0) { c = 0; }
+                    }
+                    else if (dungeon[r][c].equals("P")) { dungeon[r][c] = "0"; }
+                    else if (dungeon[r][c].equals("0")) { dungeon[r][c] = " "; }
+                }
+            }
             printMatrix(dungeon);
         }
+        System.out.println("\nYou collected all of the coins! You Win!");
     }
 }
