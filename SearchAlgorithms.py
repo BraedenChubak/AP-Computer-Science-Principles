@@ -1,19 +1,19 @@
 class SearchAlgorithms:
-    def linearSearch(arr, target):
+    def linearSearch(self, arr, target):
         for x in range(len(arr)):
             if target == arr[x]:
                 return x
         return -1
 
-    def binarySearch(arr, target):
-        int low = 0
-        int high = len(arr)
+    def binarySearch(self, arr, target):
+        low = 0
+        high = len(arr)
 
         while low <= high:
-            int mid = (low + high) / 2
-            if arr[mid] == x:
+            mid = int((low + high) / 2)
+            if arr[mid] == target:
                 return mid
-            elif arr[mid] < x:
+            elif arr[mid] < target:
                 low = mid + 1
             else:
                 high = mid - 1
