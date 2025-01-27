@@ -37,13 +37,11 @@ class TestCalc(unittest.TestCase):
         self.assertEqual(Calc.mul(1, -1), -1)
 
     def test_mod_normal_case(self):
-        self.assertEqual(Calc.mul(1, 2), 1)
+        self.assertEqual(Calc.mod(1, 2), 1)
     def test_mod_edge_case(self):
-        self.assertEqual(Calc.mul(0, 0), 0)
+        self.assertEqual(Calc.mod(0, 0), 0)
     def test_mod_error_case(self):
-        self.assertEqual(Calc.mul(1, -1), 0)
-
-    # TODO: finish mod
+        self.assertEqual(Calc.mod(1, -1), 0)
 
     def test_div_normal_case(self):
         self.assertEqual(Calc.div(1, 2), 0.5)
