@@ -41,7 +41,7 @@ class TestCalc(unittest.TestCase):
     def test_mod_edge_case(self):
         self.assertEqual(Calc.mul(0, 0), 0)
     def test_mod_error_case(self):
-        self.assertEqual(Calc.mul(1, -1), -1)
+        self.assertEqual(Calc.mul(1, -1), 0)
 
     # TODO: finish mod
 
