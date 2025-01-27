@@ -29,7 +29,21 @@ class TestCalc(unittest.TestCase):
     def test_sub_error_case(self):
         self.assertEqual(Calc.sub(1, -1), 2)
 
-    # TODO: finish mul and mod
+    def test_mul_normal_case(self):
+        self.assertEqual(Calc.mul(1, 2), 2)
+    def test_mul_edge_case(self):
+        self.assertEqual(Calc.mul(0, 0), 0)
+    def test_mul_error_case(self):
+        self.assertEqual(Calc.mul(1, -1), -1)
+
+    def test_mod_normal_case(self):
+        self.assertEqual(Calc.mul(1, 2), 1)
+    def test_mod_edge_case(self):
+        self.assertEqual(Calc.mul(0, 0), 0)
+    def test_mod_error_case(self):
+        self.assertEqual(Calc.mul(1, -1), -1)
+
+    # TODO: finish mod
 
     def test_div_normal_case(self):
         self.assertEqual(Calc.div(1, 2), 0.5)
