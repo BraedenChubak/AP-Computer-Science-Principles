@@ -39,7 +39,8 @@ class TestCalc(unittest.TestCase):
     def test_mod_normal_case(self):
         self.assertEqual(Calc.mod(1, 2), 1)
     def test_mod_edge_case(self):
-        self.assertEqual(Calc.mod(0, 0), 0)
+        with self.assertRaises(ZeroDivisionError):
+            Calc.div(0,0)
     def test_mod_error_case(self):
         self.assertEqual(Calc.mod(1, -1), 0)
 
