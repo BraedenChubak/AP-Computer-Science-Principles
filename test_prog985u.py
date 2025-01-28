@@ -27,6 +27,12 @@ class TestQuickSort(unittest.TestCase):
     def test_single_case(self):
         input_arr = [1]
         expected_output = [1]
+        self.assertEqual(QuickSort.sort(input_arr), expected_output)
+
+    def test_identival_case(self):
+        input_arr = [9, 9, 9, 9, 9]
+        expected_output = [9, 9, 9, 9, 9]
+        self.assertEqual(QuickSort.sort(input_arr), expected_output)
 
 
     # TODO: the rest of the test cases
