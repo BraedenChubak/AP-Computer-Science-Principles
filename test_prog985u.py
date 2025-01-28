@@ -34,6 +34,16 @@ class TestQuickSort(unittest.TestCase):
         expected_output = [9, 9, 9, 9, 9]
         self.assertEqual(QuickSort.sort(input_arr), expected_output)
 
+    def test_negative_case(self):
+        input_arr = [-4, -1, -7, -3]
+        expected_output = [-7, -4, -3, -1]
+        self.assertEqual(QuickSort.sort(input_arr), expected_output)
+
+    def test_mixed_case(self):
+        input_arr = [6.2, 4, 0, 1.7]
+        expected_output = [0, 1.7, 4, 6.2]
+        self.assertEqual(QuickSort.sort(input_arr), expected_output)
+
 
     # TODO: the rest of the test cases
 
