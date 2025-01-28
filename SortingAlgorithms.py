@@ -52,37 +52,35 @@ class SortingAlgorithms:
         # A[i], A[j] = A[j], A[i]
 
     @staticmethod
-    def merge_sort(arr, l=0, r=None):
-        if r is None:
-            r = arr.length
-        if left < right:
-            mid = (int)((left + right) / 2)
-            merge_sort(arr, left, mid)
-            merge_sort(arr, mid + 1, right)
-            merge(arr, left, mid, right)
+    def merge_sort(arr):
+        if arr.length > 0:
+            mid = (int)(arr.length / 2)
+            l = A[0, mid]
+            r = A[mid, r]
+            merge_sort(l)
+            merge_sort(r)
+            merge(arr, l, r)
 
     @staticmethod
-    def merge(arr, l, m, r):
+    def merge(arr, l, r):
         i = 0
         j = 0
         k = 0
-        finalarr = [0] * arr.length
-        while i < m - l + 1 and j < r - m:
-            if arr[i] < arr[m + j]:
-                finalarr[k] = arr[i]
+        while i < l.length and j < r.length:
+            if l[i] < r[j]:
+                arr[k] = l[i]
                 i += 1
             else:
-                finalarr[k] = arr[m + j]
+                arr[k] = r[j]
                 j += 1
             k += 1
-        while i < m - l + 1:
-            finalarr[k] = arr[i]
+        while i < l.length:
+            arr[k] = l[i]
             i += 1
             k += 1
-        while j < r - m:
-            finalarr[k] = arr[m + j]
+        while j < r.length:
+            arr[k] = r[j]
             j += 1
             k += 1
-        return finalarr
 
         
