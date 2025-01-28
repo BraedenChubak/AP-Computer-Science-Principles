@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [3.12]  # Test with multiple versions of Python; e.g., [3.7, 3.9, 3.12]
+        python-version: [3.13]  # Test with multiple versions of Python; e.g., [3.7, 3.9, 3.12]
 
     steps:
     - uses: actions/checkout@v3
