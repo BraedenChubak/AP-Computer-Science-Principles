@@ -1,1 +1,1 @@
-arr
+    cout << x;
