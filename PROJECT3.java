@@ -3,7 +3,13 @@ import java.lang.Math;
 
 public class PROJECT3 {
     public static double convert(double amt, double ratefrom, double rateto) {
-        return amt * rateto / ratefrom;
+        if (ratefrom >= rateto) {
+            rateto /= ratefrom;
+            return amt * rateto;
+        } else {
+            ratefrom /= rateto;
+            return amt / ratefrom;
+        }
     }
     public static void main(String[] args) {
         double[] lengthRates = {1000, 100, 39.37, 3.2808, 1.0936, 1, 0.0001, 0.0006214};
