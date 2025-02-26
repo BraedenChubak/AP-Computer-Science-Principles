@@ -2,22 +2,40 @@ import java.util.*;
 import java.lang.Math;
 
 public class PROJECT3 {
-    public static double convert(double amt, double ratefrom, double rateto) {
-        if (ratefrom >= rateto) {
-            rateto /= ratefrom;
-            return amt * rateto;
+    static double[] lengthRates = {1000, 100, 39.37, 3.2808, 1.0936, 1, 0.0001, 0.0006214};
+    static String[] lengthOpts = {"mm", "cm", "in", "ft", "yd", "m", "km"};
+    static double[] weightRates = {1000000, 1000, 35.274, 2.2, 1};
+    static String[] weightOpts = {"mg", "g", "oz", "lb", "kg"};
+    static double[] volRates = {10000, 1550, 10.76, 1.196, 1, 0.000001};
+    static String[] volOpts = {"cm", "in", "ft", "yd", "m", "km"};
+    public static String convert(double amt, int fromIndex, int toIndex, String type) {
+        double fromrate;
+        double torate;
+        String fromtype;
+        String totype;
+        if (type.equals("L")) {
+            fromrate = lengthRates[fromIndex];
+            torate = lengthRates[toIndex];
+            fromtype = lengthOpts[fromIndex];
+            totype = lengthOpts[toIndex];
+            return (amt + lengthOpts[fromIndex] + " = " + (amt * torate / fromrate) + lengthOpts[toIndex]);
+        } else if (type.equals("W")) {
+            fromrate = weightRates[fromIndex];
+            torate = weightRates[toIndex];
+            fromtype = weightOpts[fromIndex];
+            totype = weightOpts[toIndex];
+            return (amt + weightOpts[fromIndex] + " = " + (amt * torate / fromrate) + weightOpts[toIndex]);
+        } else if (type.equals("V")) {
+            fromrate = volRates[fromIndex];
+            torate = volRates[toIndex];
+            fromtype = volOpts[fromIndex];
+            totype = volOpts[toIndex];
+            return (amt + volOpts[fromIndex] + "^2 = " + (amt * torate / fromrate) + volOpts[toIndex] + "^2");
         } else {
-            ratefrom /= rateto;
-            return amt / ratefrom;
+            return "ERROR";
         }
     }
     public static void main(String[] args) {
-        double[] lengthRates = {1000, 100, 39.37, 3.2808, 1.0936, 1, 0.0001, 0.0006214};
-        String[] lengthOpts = {"mm", "cm", "in", "ft", "yd", "m", "km"};
-        double[] weightRates = {1000000, 1000, 35.274, 2.2, 1}; // mg, g, oz, lb, kg
-        String[] weightOpts = {"mg", "g", "oz", "lb", "kg"};
-        double[] volRates = {10000, 1550, 10.76, 1.196, 1, 0.000001}; // cm, in, ft, yd, m, km
-        String[] volOpts = {"cm", "in", "ft", "yd", "m", "km"};
         Scanner input = new Scanner(System.in);
         System.out.print("Would you like to convert length, weight, or volume (L, W, V)? ");
         String ans = input.next();
@@ -56,7 +74,7 @@ public class PROJECT3 {
             }
             System.out.print("How much of the first unit are you converting? ");
             amtBefore = input.nextDouble();
-            System.out.println(amtBefore + lengthOpts[fromIndex] + " = " + convert(amtBefore, fromRate, toRate) + lengthOpts[toIndex]);
+            System.out.println(convert(amtBefore, fromIndex, toIndex, ans));
         } else if (ans.equals("W")) {
             System.out.print("What unit would you like to convert FROM? ");
             from = input.next().toLowerCase();
@@ -84,7 +102,7 @@ public class PROJECT3 {
             }
             System.out.print("How much of the first unit are you converting? ");
             amtBefore = input.nextDouble();
-            System.out.println(amtBefore + weightOpts[fromIndex] + " = " + convert(amtBefore, fromRate, toRate) + weightOpts[toIndex]);
+            System.out.println(convert(amtBefore, fromIndex, toIndex, ans));
         } else if (ans.equals("V")) {
             System.out.print("What unit would you like to convert FROM? ");
             from = input.next().toLowerCase();
@@ -112,7 +130,7 @@ public class PROJECT3 {
             }
             System.out.print("How much of the first unit are you converting? ");
             amtBefore = input.nextDouble();
-            System.out.println(amtBefore + volOpts[fromIndex] + "^2 = " + convert(amtBefore, fromRate, toRate) + volOpts[toIndex] + "^2");
+            System.out.println(convert(amtBefore, fromIndex, toIndex, ans));
         } else {
             System.out.println("INVALID INPUT");
         }
