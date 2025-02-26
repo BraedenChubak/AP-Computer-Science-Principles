@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.Math;
 
-public class PROJECT3 {
+public class PROJECT3OLD {
     static double[] lengthRates = {1000, 100, 39.37, 3.2808, 1.0936, 1, 0.0001, 0.0006214};
     static String[] lengthOpts = {"mm", "cm", "in", "ft", "yd", "m", "km"};
     static double[] weightRates = {1000000, 1000, 35.274, 2.2, 1};
@@ -11,25 +11,17 @@ public class PROJECT3 {
     public static String convert(double amt, int fromIndex, int toIndex, String type) {
         double fromrate;
         double torate;
-        String fromtype;
-        String totype;
         if (type.equals("L")) {
             fromrate = lengthRates[fromIndex];
             torate = lengthRates[toIndex];
-            fromtype = lengthOpts[fromIndex];
-            totype = lengthOpts[toIndex];
             return (amt + lengthOpts[fromIndex] + " = " + (amt * torate / fromrate) + lengthOpts[toIndex]);
         } else if (type.equals("W")) {
             fromrate = weightRates[fromIndex];
             torate = weightRates[toIndex];
-            fromtype = weightOpts[fromIndex];
-            totype = weightOpts[toIndex];
             return (amt + weightOpts[fromIndex] + " = " + (amt * torate / fromrate) + weightOpts[toIndex]);
         } else if (type.equals("V")) {
             fromrate = volRates[fromIndex];
             torate = volRates[toIndex];
-            fromtype = volOpts[fromIndex];
-            totype = volOpts[toIndex];
             return (amt + volOpts[fromIndex] + "^2 = " + (amt * torate / fromrate) + volOpts[toIndex] + "^2");
         } else {
             return "ERROR";
