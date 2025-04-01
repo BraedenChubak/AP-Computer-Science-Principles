@@ -8,21 +8,27 @@ public class PROJECT3OLD {
     static String[] weightOpts = {"mg", "g", "oz", "lb", "kg"};
     static double[] volRates = {10000, 1550, 10.76, 1.196, 1, 0.000001};
     static String[] volOpts = {"cm", "in", "ft", "yd", "m", "km"};
-    public static String convert(double amt, int fromIndex, int toIndex, String type) {
-        double fromrate;
-        double torate;
+    public static String convert(double amt, String fromType, String toType, String type) {
+        double fromrate = -1;
+        double torate = -1;
         if (type.equals("L")) {
-            fromrate = lengthRates[fromIndex];
-            torate = lengthRates[toIndex];
-            return (amt + lengthOpts[fromIndex] + " = " + (amt * torate / fromrate) + lengthOpts[toIndex]);
+            for (int i = 0; i < lengthOpts.length; i++) {
+                if (fromType.equals(lengthOpts[i])) {fromrate = lengthRates[i];}
+                if (toType.equals(lengthOpts[i])) {torate = lengthRates[i];}
+            }
+            return (amt + fromType + " = " + (amt * torate / fromrate) + toType);
         } else if (type.equals("W")) {
-            fromrate = weightRates[fromIndex];
-            torate = weightRates[toIndex];
-            return (amt + weightOpts[fromIndex] + " = " + (amt * torate / fromrate) + weightOpts[toIndex]);
+            for (int i = 0; i < weightOpts.length; i++) {
+                if (fromType.equals(weightOpts[i])) {fromrate = weightRates[i];}
+                if (toType.equals(weightOpts[i])) {torate = weightRates[i];}
+            }
+            return (amt + fromType + " = " + (amt * torate / fromrate) + toType);
         } else if (type.equals("V")) {
-            fromrate = volRates[fromIndex];
-            torate = volRates[toIndex];
-            return (amt + volOpts[fromIndex] + "^2 = " + (amt * torate / fromrate) + volOpts[toIndex] + "^2");
+            for (int i = 0; i < volOpts.length; i++) {
+                if (fromType.equals(volOpts[i])) {fromrate = volRates[i];}
+                if (toType.equals(volOpts[i])) {torate = volRates[i];}
+            }
+            return (amt + fromType + "^3 = " + (amt * torate / fromrate) + toType + "^3");
         } else {
             return "ERROR";
         }
@@ -66,7 +72,7 @@ public class PROJECT3OLD {
             }
             System.out.print("How much of the first unit are you converting? ");
             amtBefore = input.nextDouble();
-            System.out.println(convert(amtBefore, fromIndex, toIndex, ans));
+            System.out.println(convert(amtBefore, from, to, ans));
         } else if (ans.equals("W")) {
             System.out.print("What unit would you like to convert FROM? ");
             from = input.next().toLowerCase();
@@ -94,7 +100,7 @@ public class PROJECT3OLD {
             }
             System.out.print("How much of the first unit are you converting? ");
             amtBefore = input.nextDouble();
-            System.out.println(convert(amtBefore, fromIndex, toIndex, ans));
+            System.out.println(convert(amtBefore, from, to, ans));
         } else if (ans.equals("V")) {
             System.out.print("What unit would you like to convert FROM? ");
             from = input.next().toLowerCase();
@@ -122,7 +128,7 @@ public class PROJECT3OLD {
             }
             System.out.print("How much of the first unit are you converting? ");
             amtBefore = input.nextDouble();
-            System.out.println(convert(amtBefore, fromIndex, toIndex, ans));
+            System.out.println(convert(amtBefore, from, to, ans));
         } else {
             System.out.println("INVALID INPUT");
         }
